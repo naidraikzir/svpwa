@@ -12,9 +12,6 @@
 		"format": "prettier --plugin-search-dir . --write .",
 		"prepare": "husky install"
 	},
-	"dependencies": {
-		"@fontsource/ia-writer-duo": "^5.0.3"
-	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.0",
 		"@sveltejs/adapter-static": "^2.0.2",

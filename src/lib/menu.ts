@@ -5,6 +5,7 @@ export type MenuItem = {
 
 const menu: MenuItem[] = [
 	{ name: 'Home', path: '/' },
+	{ name: 'Profile', path: '/profile' },
 	{ name: 'Settings', path: '/settings' }
 ];
 

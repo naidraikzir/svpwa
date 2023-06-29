@@ -1,5 +1,4 @@
 <script>
-	import '@fontsource/ia-writer-duo';
 	import '$lib/app.css';
 	import Menu from '$lib/components/Menu.svelte';
 	import PageTitle from '$lib/components/PageTitle.svelte';

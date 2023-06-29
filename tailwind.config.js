@@ -6,7 +6,7 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				mono: ['iA Writer Duo', ...defaultTheme.fontFamily.mono]
+				sans: ['GeneralSans', ...defaultTheme.fontFamily.sans]
 			}
 		}
 	},

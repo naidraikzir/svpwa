@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-dependencies:
-  '@fontsource/ia-writer-duo':
-    specifier: ^5.0.3
-    version: 5.0.3
-
 devDependencies:
   '@sveltejs/adapter-auto':
     specifier: ^2.1.0
@@ -323,10 +318,6 @@ packages:
     resolution: {integrity: sha512-s2UHCoiXfxMvmfzqoN+vrQ84ahUSYde9qNO1MdxmoEhyHWsfmwOpFlwYV+ePJEVc7gFnATGUi376WowX1N7tFg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
-
-  /@fontsource/ia-writer-duo@5.0.3:
-    resolution: {integrity: sha512-5PVr3UhzkhR0s8vKnJavddAup9nLi/pkBP4ODrtEw3Nf9JUfTNtJmu3doX+UyLF0nGE36cR2hxxH8CBYJ65vRA==}
-    dev: false
 
   /@humanwhocodes/config-array@0.11.10:
     resolution: {integrity: sha512-KVVjQmNUepDVGXNuoRRdmmEjruj0KfiGSbS8LVc12LMsWDQzRXJ0qdhN8L8uUigKpfEHRhlaQFY0ib1tnUbNeQ==}

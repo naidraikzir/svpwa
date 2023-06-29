@@ -5,11 +5,11 @@
 <div class="group/menu">
 	<button
 		class="
-            fixed z-10 bottom-2 lg:bottom-4 right-2 lg:right-4 w-10 h-10
-            flex items-center justify-center bg-emerald-500 rounded
+            fixed z-10 bottom-2 lg:bottom-4 right-2 lg:right-4 w-10 h-10 text-4xl
+            flex items-center justify-center bg-white shadow-lg rounded
         "
 	>
-		📝
+		🞵
 	</button>
 
 	<div
@@ -21,7 +21,7 @@
 		{#each menu as { name, path }, m}
 			<a
 				class="
-					bg-emerald-500 text-white px-3 py-1 rounded transition duration-300
+					bg-white shadow-lg px-3 py-1 rounded transition duration-300
 					opacity-0 group-hover/menu:opacity-100 translate-y-2 group-hover/menu:translate-y-0
 				"
 				href={path}
