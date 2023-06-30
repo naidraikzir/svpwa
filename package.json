@@ -12,6 +12,11 @@
 		"format": "prettier --plugin-search-dir . --write .",
 		"prepare": "husky install"
 	},
+	"dependencies": {
+		"@faker-js/faker": "^8.0.2",
+		"idb-keyval": "^6.2.1",
+		"svelte-virtual-scroll-list": "^1.1.0"
+	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.0",
 		"@sveltejs/adapter-static": "^2.0.2",

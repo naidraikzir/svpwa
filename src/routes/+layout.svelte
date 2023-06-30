@@ -6,10 +6,10 @@
 
 <Menu />
 
-<div class="min-h-screen bg-gray-100">
+<div class="min-h-screen bg-gray-100 pb-12">
 	<PageTitle />
 
-	<div class="px-3">
+	<div class="px-3 pt-2">
 		<slot />
 	</div>
 </div>
