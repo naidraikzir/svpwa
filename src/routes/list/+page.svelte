@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { faker } from '@faker-js/faker';
+	import { randFullName, randEmail, randPastDate } from '@ngneat/falso';
 	import { VirtualScroll } from 'svelte-virtual-scroll-list';
 	import { listStore } from '$lib/stores/list';
 
@@ -8,15 +8,15 @@
 	function add() {
 		listStore.add(
 			Array.from(Array(qty)).map(() => ({
-				name: faker.person.fullName(),
-				email: faker.internet.email(),
-				birthdate: faker.date.birthdate()
+				name: randFullName(),
+				email: randEmail(),
+				birthdate: randPastDate()
 			}))
 		);
 	}
 </script>
 
-<div class="flex flex-wrap gap-2">
+<div class="flex justify-between gap-2">
 	<form on:submit|preventDefault={add} class="flex bg-white shadow-lg rounded">
 		<button type="submit" class="bg-black text-white rounded-l px-3 py-1">Add</button>
 		<input
@@ -26,10 +26,12 @@
 		/>
 		<span class="px-3 py-1">Items</span>
 	</form>
-	<button class="bg-white shadow-lg rounded px-3 py-1" on:click={listStore.clear}>Clear</button>
+	<button class="bg-white shadow-lg rounded px-3 py-1" on:click={listStore.clear}>
+		Clear {Intl.NumberFormat().format($listStore.length)}
+	</button>
 </div>
 
-<div class="mt-4 text-xs">
+<div class="mt-4">
 	{#await listStore.init()}
 		<div>Loading...</div>
 	{:then}
@@ -37,13 +39,13 @@
 			<div>Empty 🤷‍♂️</div>
 		{/if}
 
-		<div class="h-[500px]">
+		<div class="h-[500px] text-xs">
 			<VirtualScroll data={$listStore} key="email" let:data>
 				<div class="py-2">
 					<div class="text-lg font-semibold">{data.name}</div>
 					<div>{data.email}</div>
 					<div>
-						{data.birthdate.toDateString()}
+						{Intl.DateTimeFormat(undefined, { dateStyle: 'long' }).format(data.birthdate)}
 					</div>
 				</div>
 			</VirtualScroll>

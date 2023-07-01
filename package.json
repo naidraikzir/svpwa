@@ -13,7 +13,7 @@
 		"prepare": "husky install"
 	},
 	"dependencies": {
-		"@faker-js/faker": "^8.0.2",
+		"@ngneat/falso": "^6.4.0",
 		"idb-keyval": "^6.2.1",
 		"svelte-virtual-scroll-list": "^1.1.0"
 	},
