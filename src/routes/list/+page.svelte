@@ -2,6 +2,7 @@
 	import { randFullName, randEmail, randPastDate } from '@ngneat/falso';
 	import { VirtualScroll } from 'svelte-virtual-scroll-list';
 	import { listStore } from '$lib/stores/list';
+	import DocumentHead from '$lib/components/DocumentHead.svelte';
 
 	let qty = 1;
 
@@ -15,6 +16,8 @@
 		);
 	}
 </script>
+
+<DocumentHead title="List" description="List Example" />
 
 <div class="flex justify-between gap-2">
 	<form on:submit|preventDefault={add} class="flex bg-white shadow-lg rounded">
