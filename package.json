@@ -18,7 +18,6 @@
 		"svelte-virtual-scroll-list": "^1.1.0"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^2.1.0",
 		"@sveltejs/adapter-static": "^2.0.2",
 		"@sveltejs/kit": "^1.20.4",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",

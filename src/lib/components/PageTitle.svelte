@@ -8,5 +8,5 @@
 </script>
 
 {#if currentPageName}
-	<h1 class="text-3xl lg:text-4xl p-3 font-semibold">{currentPageName}</h1>
+	<h1 class="text-3xl lg:text-4xl font-semibold">{currentPageName}</h1>
 {/if}
