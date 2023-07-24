@@ -5,7 +5,8 @@ export type MenuItem = {
 
 const menu: MenuItem[] = [
 	{ name: 'Home', path: '/' },
-	{ name: 'List Example', path: '/list' }
+	{ name: 'List', path: '/list' },
+	{ name: 'Grid', path: '/grid' }
 ];
 
 export default menu;

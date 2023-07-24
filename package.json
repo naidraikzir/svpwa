@@ -14,6 +14,8 @@
 	},
 	"dependencies": {
 		"@ngneat/falso": "^6.4.0",
+		"ag-grid-community": "^30.0.5",
+		"ag-grid-svelte": "^0.3.0",
 		"idb-keyval": "^6.2.1",
 		"svelte-virtual-scroll-list": "^1.1.0"
 	},

@@ -3,6 +3,7 @@
 	import { VirtualScroll } from 'svelte-virtual-scroll-list';
 	import { listStore } from '$lib/stores/list';
 	import DocumentHead from '$lib/components/DocumentHead.svelte';
+	import Adder from '$lib/components/Adder.svelte';
 
 	let qty = 1;
 
@@ -19,20 +20,7 @@
 
 <DocumentHead title="List" description="List Example" />
 
-<div class="flex justify-between gap-2">
-	<form on:submit|preventDefault={add} class="flex bg-white shadow-lg rounded">
-		<button type="submit" class="bg-black text-white rounded-l px-3 py-1">Add</button>
-		<input
-			type="number"
-			class="w-16 border-x px-1 text-right focus:outline-none"
-			bind:value={qty}
-		/>
-		<span class="px-3 py-1">Items</span>
-	</form>
-	<button class="bg-white shadow-lg rounded px-3 py-1" on:click={listStore.clear}>
-		Clear {Intl.NumberFormat().format($listStore.length)}
-	</button>
-</div>
+<Adder {add} bind:qty store={listStore} />
 
 <div class="mt-4">
 	{#await listStore.init()}

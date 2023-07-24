@@ -8,6 +8,12 @@ dependencies:
   '@ngneat/falso':
     specifier: ^6.4.0
     version: 6.4.0
+  ag-grid-community:
+    specifier: ^30.0.5
+    version: 30.0.5
+  ag-grid-svelte:
+    specifier: ^0.3.0
+    version: 0.3.0(ag-grid-community@30.0.5)(svelte@4.0.0)
   idb-keyval:
     specifier: ^6.2.1
     version: 6.2.1
@@ -638,6 +644,20 @@ packages:
     resolution: {integrity: sha512-jaVNAFBHNLXspO543WnNNPZFRtavh3skAkITqD0/2aeMkKZTN+254PyhwxFYrk3vQ1xfY+2wbesJMs/JC8/PwQ==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+
+  /ag-grid-community@30.0.5:
+    resolution: {integrity: sha512-3AXrNx5hnH0/c4QNgNv5ub1Kna3wVPecCFq2ddMYQ6b7Ob8JhU4bMwcBf+GOiDepVc6I+Df6Bop6rGrc4O8OZw==}
+    dev: false
+
+  /ag-grid-svelte@0.3.0(ag-grid-community@30.0.5)(svelte@4.0.0):
+    resolution: {integrity: sha512-jaEwHqhZPeNtPgXTlUQ7URVbuU1eGqkGs4L7S7aLPzfDJORmAOZQYmWmHEulTN9WpbGQstScS+ACyT07uUMXwQ==}
+    peerDependencies:
+      ag-grid-community: ^28 || ^29 || ^30
+      svelte: ^3
+    dependencies:
+      ag-grid-community: 30.0.5
+      svelte: 4.0.0
+    dev: false
 
   /aggregate-error@3.1.0:
     resolution: {integrity: sha512-4I7Td01quW/RpocfNayFdFVk1qSuoh0E7JrbRJ16nH01HhKFQ88INq9Sd+nd72zqRySlr9BmDA8xlEJ6vJMrYA==}
