@@ -54,7 +54,7 @@
 			</button>
 		</div>
 
-		<div class="text-xs mt-4 mx-4">
+		<div class="text-xs mt-4">
 			<VirtualScroll data={$listStore} key="email" pageMode bind:this={vs} let:data>
 				<div class="py-2">
 					<div class="text-lg font-semibold">{data.name}</div>
