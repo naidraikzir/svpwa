@@ -31,10 +31,6 @@
 	{#await gridStore.init()}
 		<div>Loading...</div>
 	{:then}
-		{#if !$gridStore.length}
-			<div>Empty 🤷‍♂️</div>
-		{/if}
-
 		<div class="h-[600px]">
 			<AgGrid {rowData} {columnDefs} />
 		</div>

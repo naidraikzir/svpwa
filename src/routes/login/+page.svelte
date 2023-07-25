@@ -9,7 +9,7 @@
 
 	function login() {
 		if (form.username && form.password) {
-			localStorage.token = crypto.randomUUID();
+			localStorage.token = crypto.getRandomValues(new BigUint64Array(1))[0].toString(16);
 			goto('/');
 		}
 	}
