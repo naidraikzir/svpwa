@@ -4,7 +4,7 @@
 	import Adder from '$lib/components/Adder.svelte';
 	import DocumentHead from '$lib/components/DocumentHead.svelte';
 	import AgGrid from '$lib/components/Grid/AgGrid.svelte';
-	import { gridStore } from '$lib/stores/grid';
+	import gridStore from '$lib/stores/grid';
 
 	let qty = 1;
 
@@ -17,7 +17,11 @@
 	];
 
 	function add() {
-		gridStore.add(Array.from(Array(qty)).map(() => randCreditCard()));
+		$gridStore = [...$gridStore, ...Array.from(Array(qty)).map(() => randCreditCard())];
+	}
+
+	function clear() {
+		$gridStore = [];
 	}
 
 	$: rowData = $gridStore as [];
@@ -25,16 +29,10 @@
 
 <DocumentHead title="Grid" description="Grid Example" />
 
-<Adder {add} bind:qty store={gridStore} />
+<Adder on:add={add} on:clear={clear} bind:qty qtySaved={$gridStore.length} />
 
 <div class="mt-4">
-	{#await gridStore.init()}
-		<div>Loading...</div>
-	{:then}
-		<div class="h-[600px]">
-			<AgGrid {rowData} {columnDefs} />
-		</div>
-	{:catch error}
-		<div>{error}</div>
-	{/await}
+	<div class="h-[600px]">
+		<AgGrid {rowData} {columnDefs} />
+	</div>
 </div>

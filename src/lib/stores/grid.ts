@@ -1,7 +1,5 @@
-import { del, get, update } from 'idb-keyval';
+import { persist, createIndexedDBStorage } from '@macfja/svelte-persistent-store';
 import { writable } from 'svelte/store';
-
-const STORE_NAME = 'grid';
 
 export type GridItem = {
 	fullName: string;
@@ -14,24 +12,6 @@ export type GridItem = {
 	type: string;
 };
 
-function createGridStore() {
-	const store = writable([]);
+const store = persist(writable<GridItem[]>([]), createIndexedDBStorage(), 'grid');
 
-	return {
-		...store,
-		async init() {
-			const val = await get(STORE_NAME);
-			store.set(val || []);
-		},
-		async add(newItems: GridItem[]) {
-			await update(STORE_NAME, (val = []) => [...newItems, ...val]);
-			this.init();
-		},
-		async clear() {
-			await del(STORE_NAME);
-			store.set([]);
-		}
-	};
-}
-
-export const gridStore = createGridStore();
+export default store;

@@ -4,26 +4,31 @@
 	import { VirtualScroll } from 'svelte-virtual-scroll-list';
 	import DocumentHead from '$lib/components/DocumentHead.svelte';
 	import Adder from '$lib/components/Adder.svelte';
-	import { listStore } from '$lib/stores/list';
+	import listStore from '$lib/stores/list';
 
 	let vs: SvelteComponent;
 	let qty = 1;
 	let scrollTo = 0;
 
 	function add() {
-		listStore.add(
-			Array.from(Array(qty)).map(() => ({
+		$listStore = [
+			...$listStore,
+			...Array.from(Array(qty)).map(() => ({
 				name: randFullName(),
 				email: randEmail(),
 				birthdate: randPastDate()
 			}))
-		);
+		];
+	}
+
+	function clear() {
+		$listStore = [];
 	}
 </script>
 
 <DocumentHead title="List" description="List Example" />
 
-<Adder {add} bind:qty store={listStore} />
+<Adder on:add={add} on:clear={clear} bind:qty qtySaved={$listStore.length} />
 
 <div class="flex justify-between mt-4 sticky top-4">
 	<form
@@ -48,25 +53,19 @@
 </div>
 
 <div class="mt-4">
-	{#await listStore.init()}
-		<div>Loading...</div>
-	{:then}
-		{#if !$listStore.length}
-			<div>Empty 🤷‍♂️</div>
-		{/if}
+	{#if !$listStore.length}
+		<div>Empty 🤷‍♂️</div>
+	{/if}
 
-		<div class="text-xs">
-			<VirtualScroll data={$listStore} key="email" pageMode bind:this={vs} let:data>
-				<div class="py-2">
-					<div class="text-lg font-semibold">{data.name}</div>
-					<div>{data.email}</div>
-					<div>
-						{Intl.DateTimeFormat(undefined, { dateStyle: 'long' }).format(data.birthdate)}
-					</div>
+	<div class="text-xs">
+		<VirtualScroll data={$listStore} key="email" pageMode bind:this={vs} let:data>
+			<div class="py-2">
+				<div class="text-lg font-semibold">{data.name}</div>
+				<div>{data.email}</div>
+				<div>
+					{Intl.DateTimeFormat(undefined, { dateStyle: 'long' }).format(data.birthdate)}
 				</div>
-			</VirtualScroll>
-		</div>
-	{:catch error}
-		<div>{error}</div>
-	{/await}
+			</div>
+		</VirtualScroll>
+	</div>
 </div>
