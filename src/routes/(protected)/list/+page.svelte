@@ -36,6 +36,7 @@
 			class="w-16 border-x px-1 text-right focus:outline-none rounded-r"
 			bind:value={scrollTo}
 			max={$listStore.length}
+			aria-label="index to scroll to"
 		/>
 	</form>
 	<button class="bg-white shadow-lg rounded px-3 py-1" on:click={vs.scrollToOffset(0)}>

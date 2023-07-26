@@ -13,6 +13,7 @@
 			type="number"
 			class="w-16 border-x px-1 text-right focus:outline-none"
 			bind:value={qty}
+			aria-label="quantity"
 		/>
 		<span class="px-3 py-1">Items</span>
 	</form>
