@@ -1,6 +1,5 @@
 <script>
 	import { goto } from '$app/navigation';
-	import '$lib/app.css';
 	import Menu from '$lib/components/Menu.svelte';
 	import PageTitle from '$lib/components/PageTitle.svelte';
 
