@@ -9,7 +9,10 @@
 </script>
 
 <div class="flex justify-between gap-2">
-	<form on:submit|preventDefault={() => dispatch('add')} class="flex bg-white shadow-lg rounded">
+	<form
+		on:submit|preventDefault={() => !disabled && dispatch('add')}
+		class="flex bg-white shadow-lg rounded"
+	>
 		<button
 			type="submit"
 			class="bg-black text-white rounded-l px-3 py-1 disabled:opacity-50 disabled:cursor-not-allowed"

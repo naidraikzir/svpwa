@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { randCreditCard } from '@ngneat/falso';
 	import type { ColDef } from 'ag-grid-community';
 	import Adder from '$lib/components/Adder.svelte';
 	import DocumentHead from '$lib/components/DocumentHead.svelte';
 	import AgGrid from '$lib/components/Grid/AgGrid.svelte';
-	import gridStore from '$lib/stores/grid';
+	import gridStore, { add, clear } from '$lib/stores/grid';
 
 	let qty = 1;
+	let loading = false;
 
 	const columnDefs: ColDef[] = [
 		{ field: 'fullName', pinned: 'left', width: 150 },
@@ -16,12 +16,10 @@
 		{ field: 'type' }
 	];
 
-	function add() {
-		$gridStore = [...$gridStore, ...Array.from(Array(qty)).map(() => randCreditCard())];
-	}
-
-	function clear() {
-		$gridStore = [];
+	async function addItems() {
+		loading = true;
+		await add(qty);
+		loading = false;
 	}
 
 	$: rowData = $gridStore as [];
@@ -29,7 +27,13 @@
 
 <DocumentHead title="Grid" description="Grid Example" />
 
-<Adder on:add={add} on:clear={clear} bind:qty qtySaved={$gridStore.length} />
+<Adder
+	on:add={addItems}
+	on:clear={clear}
+	bind:qty
+	qtySaved={$gridStore.length}
+	disabled={loading}
+/>
 
 <div class="mt-4">
 	<div class="h-[600px]">
