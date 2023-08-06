@@ -4,7 +4,11 @@
 	import 'ag-grid-community/styles/ag-theme-alpine.css';
 	import AgGridSvelte from 'ag-grid-svelte';
 
-	export let defaultColDef: ColDef = { width: 100, sortable: true, unSortIcon: true };
+	export let defaultColDef: ColDef = {
+		filter: true,
+		resizable: true,
+		sortable: true
+	};
 	export let columnDefs: ColDef[] = [];
 	export let rowData: [];
 </script>

@@ -11,21 +11,22 @@
 <div class="flex justify-between gap-2">
 	<form
 		on:submit|preventDefault={() => !disabled && dispatch('add')}
-		class="flex bg-white shadow-lg rounded"
+		class="flex bg-white shadow-lg rounded overflow-hidden"
 	>
 		<button
 			type="submit"
-			class="bg-black text-white rounded-l px-3 py-1 disabled:opacity-50 disabled:cursor-not-allowed"
-			{disabled}>Add</button
+			class="shrink-0 bg-black text-white rounded-l px-3 py-1 disabled:opacity-50 disabled:cursor-not-allowed"
+			{disabled}
 		>
+			Add{disabled ? 'ing...' : ''}
+		</button>
 		<input
 			type="number"
-			class="w-24 border-x px-1 text-right focus:outline-none disabled:bg-gray-200 disabled:cursor-not-allowed"
+			class="w-24 border-x px-1 pr-2 text-right focus:outline-none disabled:bg-gray-200 disabled:cursor-not-allowed"
 			bind:value={qty}
 			aria-label="quantity"
 			{disabled}
 		/>
-		<span class="px-3 py-1">Items</span>
 	</form>
 	<button class="bg-white shadow-lg rounded px-3 py-1" on:click={() => dispatch('clear')}>
 		Clear {Intl.NumberFormat().format(qtySaved)}

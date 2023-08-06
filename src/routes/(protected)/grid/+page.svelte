@@ -9,7 +9,7 @@
 	let loading = false;
 
 	const columnDefs: ColDef[] = [
-		{ field: 'fullName', pinned: 'left', width: 150 },
+		{ field: 'fullName', width: 200 },
 		{ field: 'brand', width: 150 },
 		{ field: 'untilEnd', width: 120, type: 'rightAligned' },
 		{ field: 'number', width: 200 },
@@ -36,7 +36,7 @@
 />
 
 <div class="mt-4">
-	<div class="h-[600px]">
+	<div class="h-[calc(100vh-11em)]">
 		<AgGrid {rowData} {columnDefs} />
 	</div>
 </div>

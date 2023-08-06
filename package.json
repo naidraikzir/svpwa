@@ -2,6 +2,7 @@
 	"name": "svpwa",
 	"version": "0.0.1",
 	"private": true,
+	"homepage": "https://github.com/naidraikzir/svpwa",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
