@@ -2,7 +2,7 @@
 	import '$lib/app.css';
 	import NetworkStatus from '$lib/components/NetworkStatus.svelte';
 
-	let status = false;
+	let status = !navigator.onLine;
 </script>
 
 <NetworkStatus on:shown={(e) => (status = e.detail)} />

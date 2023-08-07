@@ -3,10 +3,9 @@
 	import Adder from '$lib/components/Adder.svelte';
 	import DocumentHead from '$lib/components/DocumentHead.svelte';
 	import AgGrid from '$lib/components/Grid/AgGrid.svelte';
-	import gridStore, { add, clear } from '$lib/stores/grid';
+	import gridStore, { add, clear, isBusy } from '$lib/stores/grid';
 
 	let qty = 1;
-	let loading = false;
 
 	const columnDefs: ColDef[] = [
 		{ field: 'fullName', width: 200 },
@@ -16,23 +15,17 @@
 		{ field: 'type' }
 	];
 
-	async function addItems() {
-		loading = true;
-		await add(qty);
-		loading = false;
-	}
-
 	$: rowData = $gridStore as [];
 </script>
 
 <DocumentHead title="Grid" description="Grid Example" />
 
 <Adder
-	on:add={addItems}
+	on:add={() => add(qty)}
 	on:clear={clear}
 	bind:qty
 	qtySaved={$gridStore.length}
-	disabled={loading}
+	disabled={$isBusy}
 />
 
 <div class="mt-4">

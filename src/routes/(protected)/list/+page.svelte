@@ -3,38 +3,28 @@
 	import { VirtualScroll } from 'svelte-virtual-scroll-list';
 	import Adder from '$lib/components/Adder.svelte';
 	import DocumentHead from '$lib/components/DocumentHead.svelte';
-	import listStore, { add, clear } from '$lib/stores/list';
+	import listStore, { add, clear, isBusy } from '$lib/stores/list';
 	import VirtualScrollNavigation from '$lib/components/VirtualScrollNavigation.svelte';
 
 	const dateFormatter = Intl.DateTimeFormat(undefined, { dateStyle: 'long' });
 	let vs: SvelteComponent;
 	let qty = 1;
-	let loading = false;
-
-	async function addItems() {
-		if (loading) return;
-		loading = true;
-		await add(qty);
-		loading = false;
-	}
 </script>
 
 <DocumentHead title="List" description="List Example" />
 
 <Adder
-	on:add={addItems}
+	on:add={() => add(qty)}
 	on:clear={clear}
 	bind:qty
 	qtySaved={$listStore.length}
-	disabled={loading}
+	disabled={$isBusy}
 />
 
 <VirtualScrollNavigation {vs} max={$listStore.length} />
 
 <div class="mt-4">
-	{#if loading}
-		<div>Loading...</div>
-	{:else if !$listStore.length}
+	{#if !$listStore.length}
 		<div>Empty 🤷‍♂️</div>
 	{/if}
 

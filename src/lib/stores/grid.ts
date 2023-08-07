@@ -16,13 +16,16 @@ export type GridItem = {
 };
 
 const store = persist(writable<GridItem[]>([]), createIndexedDBStorage(), 'grid');
+export const isBusy = writable(false);
 
 export async function add(qty: number) {
+	isBusy.set(true);
 	const worker = await createWorker();
 	const results = await worker.create(qty, Comlink.proxy(randCreditCard));
 	const decoder = new TextDecoder();
-	const json = decoder.decode(results);
-	store.update((value) => [...value, ...JSON.parse(json)]);
+	const str = decoder.decode(results);
+	store.update((value) => [...value, ...JSON.parse(str)]);
+	isBusy.set(false);
 }
 
 export async function clear() {
