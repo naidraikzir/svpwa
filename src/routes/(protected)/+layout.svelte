@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { goto } from '$app/navigation';
 	import GithubMark from '$lib/components/GithubMark.svelte';
 	import Menu from '$lib/components/Menu.svelte';

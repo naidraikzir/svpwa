@@ -1,4 +1,8 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
+
 	let online = navigator.onLine;
 	let shown = !navigator.onLine;
 
@@ -14,11 +18,13 @@
 
 	window.addEventListener('online', setOnline);
 	window.addEventListener('offline', setOnline);
+
+	$: dispatch('shown', shown);
 </script>
 
 <div
 	class="
-        text-sm text-center text-white overflow-hidden transition-all
+        fixed inset-x-0 top-0 text-sm text-center text-white overflow-hidden transition-all
         {shown ? 'max-h-6' : 'max-h-0'}
     "
 >
