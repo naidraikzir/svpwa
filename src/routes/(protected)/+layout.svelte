@@ -20,6 +20,7 @@
 			class="h-6 w-6 ml-auto mr-4 mt-0.5"
 			target="_blank"
 			rel="noreferrer"
+			aria-label="Repository"
 		>
 			<GithubMark />
 		</a>

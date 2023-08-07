@@ -18,12 +18,15 @@
 		"@ngneat/falso": "^6.4.0",
 		"ag-grid-community": "^30.0.5",
 		"ag-grid-svelte": "^0.3.0",
+		"axios": "^1.4.0",
 		"comlink": "^4.4.1",
+		"debounce": "^1.2.1",
 		"svelte-virtual-scroll-list": "^1.1.0"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^2.0.2",
 		"@sveltejs/kit": "^1.20.4",
+		"@types/debounce": "^1.2.1",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"autoprefixer": "^10.4.14",
