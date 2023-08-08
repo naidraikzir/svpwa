@@ -1,5 +1,4 @@
 <script lang="ts">
-	import debounce from 'debounce';
 	import type { SvelteComponent } from 'svelte';
 	import { VirtualScroll } from 'svelte-virtual-scroll-list';
 	import DocumentHead from '$lib/components/DocumentHead.svelte';
@@ -34,11 +33,11 @@
 			<VirtualScroll
 				data={$productsStore}
 				key="id"
-				bottomThreshold={50}
+				bottomThreshold={200}
 				pageMode
 				bind:this={vs}
 				let:data
-				on:bottom={debounce(fetch, 500)}
+				on:bottom={fetch}
 			>
 				<div class="flex py-3">
 					<div class="w-16 h-16 shrink-0 pt-1">
