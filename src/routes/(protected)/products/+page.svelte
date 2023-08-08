@@ -7,6 +7,10 @@
 	import productsStore, { fetch, clear } from '$lib/stores/products';
 
 	let vs: SvelteComponent;
+
+	function onImgError(e: Event) {
+		(e.target as HTMLImageElement).src = '/favicon.png';
+	}
 </script>
 
 <DocumentHead title="Products" description="List of Products" />
@@ -29,6 +33,7 @@
 			<VirtualScroll
 				data={$productsStore}
 				key="id"
+				bottomThreshold={50}
 				pageMode
 				bind:this={vs}
 				let:data
@@ -36,7 +41,12 @@
 			>
 				<div class="flex py-3">
 					<div class="w-16 h-16 shrink-0 pt-1">
-						<img src={data.thumbnail} alt={data.title} class="w-full max-h-full rounded" />
+						<img
+							src={data.thumbnail}
+							alt={data.title}
+							class="w-full max-h-full rounded"
+							on:error={onImgError}
+						/>
 					</div>
 					<div class="ml-4">
 						<div class="text-lg font-semibold leading-tight mb-1">{data.title}</div>
