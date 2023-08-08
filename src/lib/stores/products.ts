@@ -17,12 +17,16 @@ export type Product = {
 };
 
 const store = persist(writable<Product[]>([]), createIndexedDBStorage(), 'products');
+export const isBusy = writable(false);
 
 export async function fetch() {
+	if (get(isBusy)) return;
+	isBusy.set(true);
 	const { data } = await axios.get(
 		`https://dummyjson.com/products?limit=10&skip=${get(store).length}`
 	);
 	store.update((value) => [...value, ...data.products]);
+	isBusy.set(false);
 }
 
 export async function clear() {

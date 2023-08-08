@@ -3,8 +3,9 @@
 	import type { SvelteComponent } from 'svelte';
 	import { VirtualScroll } from 'svelte-virtual-scroll-list';
 	import DocumentHead from '$lib/components/DocumentHead.svelte';
+	import { Circle, Line } from '$lib/components/Loader';
 	import VirtualScrollNavigation from '$lib/components/VirtualScrollNavigation.svelte';
-	import productsStore, { fetch, clear } from '$lib/stores/products';
+	import productsStore, { fetch, clear, isBusy } from '$lib/stores/products';
 
 	let vs: SvelteComponent;
 
@@ -24,7 +25,7 @@
 <VirtualScrollNavigation {vs} max={$productsStore.length} />
 
 <div class="mt-4">
-	{#if !$productsStore.length}
+	{#if !$productsStore.length && !$isBusy}
 		<div class="flex items-center justify-center py-12">
 			<button class="bg-white shadow-lg rounded px-3 py-1" on:click={fetch}>Get Products</button>
 		</div>
@@ -57,6 +58,19 @@
 					</div>
 				</div>
 			</VirtualScroll>
+		</div>
+	{/if}
+
+	{#if $isBusy}
+		<div class="flex gap-2 py-3">
+			<div class="shrink-0">
+				<Circle size={75} />
+			</div>
+			<div class="flex flex-col gap-2">
+				<Line size={120} />
+				<Line />
+				<Line size={200} />
+			</div>
 		</div>
 	{/if}
 </div>
