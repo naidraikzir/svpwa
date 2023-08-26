@@ -1,8 +1,11 @@
 <script lang="ts">
+	import { fade } from 'svelte/transition';
 	import { goto } from '$app/navigation';
 	import GithubMark from '$lib/components/GithubMark.svelte';
 	import Menu from '$lib/components/Menu.svelte';
 	import PageTitle from '$lib/components/PageTitle.svelte';
+
+	export let data;
 
 	function logout() {
 		localStorage.clear();
@@ -27,7 +30,9 @@
 		<button class="bg-white shadow-lg px-3 py-1 rounded" on:click={logout}> Logout </button>
 	</div>
 
-	<div class="px-3">
-		<slot />
-	</div>
+	{#key data.pathname}
+		<div class="px-3" in:fade={{ duration: 300, delay: 300 }} out:fade={{ duration: 300 }}>
+			<slot />
+		</div>
+	{/key}
 </div>
