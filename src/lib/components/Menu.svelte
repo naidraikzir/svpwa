@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import menu from '$lib/menu';
 </script>
 
@@ -27,6 +28,9 @@
 				href={path}
 				style="transition-delay: {m * 0.1}s;"
 			>
+				{#if (path !== '/' && $page.url.pathname.startsWith(path)) || (path === '/' && $page.url.pathname === '/')}
+					•
+				{/if}
 				{name}
 			</a>
 		{/each}
