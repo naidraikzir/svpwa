@@ -1,6 +1,7 @@
 import { persist, createIndexedDBStorage } from '@macfja/svelte-persistent-store';
 import axios from 'axios';
 import { writable, get } from 'svelte/store';
+import { online } from './network';
 
 export type Product = {
 	id: number;
@@ -20,7 +21,7 @@ const store = persist(writable<Product[]>([]), createIndexedDBStorage(), 'produc
 export const isBusy = writable(false);
 
 export async function fetch() {
-	if (!navigator.onLine || get(isBusy)) return;
+	if (!get(online) || get(isBusy)) return;
 	isBusy.set(true);
 	const { data } = await axios.get(
 		`https://dummyjson.com/products?limit=10&skip=${get(store).length}`
