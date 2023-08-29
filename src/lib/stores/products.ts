@@ -20,7 +20,7 @@ const store = persist(writable<Product[]>([]), createIndexedDBStorage(), 'produc
 export const isBusy = writable(false);
 
 export async function fetch() {
-	if (get(isBusy)) return;
+	if (!navigator.onLine || get(isBusy)) return;
 	isBusy.set(true);
 	const { data } = await axios.get(
 		`https://dummyjson.com/products?limit=10&skip=${get(store).length}`
