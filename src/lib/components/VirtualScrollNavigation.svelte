@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { SvelteComponent } from 'svelte';
+	import Button from './Button.svelte';
 
 	export let vs: SvelteComponent;
 	export let max = 0;
@@ -7,20 +8,16 @@
 </script>
 
 <div class="flex justify-between mt-4 sticky top-4">
-	<form on:submit|preventDefault={vs.scrollToIndex(target)} class="flex bg-white shadow-lg rounded">
-		<button type="submit" class="bg-black text-white rounded-l px-3 py-1">Scroll To</button>
+	<form on:submit|preventDefault={vs.scrollToIndex(target)} class="flex shadow-lg rounded">
+		<Button type="submit" class="rounded-r-none bg-neutral-800 text-white">Scroll To</Button>
 		<input
 			type="number"
-			class="w-16 border-x px-1 text-right focus:outline-none rounded-r"
+			class="w-16 px-1 text-right focus:outline-none rounded-r dark:bg-neutral-700"
 			bind:value={target}
 			{max}
 			aria-label="index to scroll to"
 		/>
 	</form>
-	<button class="bg-white shadow-lg rounded px-3 py-1" on:click={vs.scrollToOffset(0)}>
-		To Top
-	</button>
-	<button class="bg-white shadow-lg rounded px-3 py-1" on:click={vs.scrollToBottom()}>
-		To Bottom
-	</button>
+	<Button on:click={vs.scrollToOffset(0)}>To Top</Button>
+	<Button on:click={vs.scrollToBottom()}>To Bottom</Button>
 </div>

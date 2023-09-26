@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
+	import Button from './Button.svelte';
 
 	const dispatch = createEventDispatcher();
 
@@ -11,24 +12,20 @@
 <div class="flex justify-between gap-2">
 	<form
 		on:submit|preventDefault={() => !disabled && dispatch('add')}
-		class="flex bg-white shadow-lg rounded overflow-hidden"
+		class="flex shadow-lg rounded overflow-hidden"
 	>
-		<button
-			type="submit"
-			class="shrink-0 bg-black text-white rounded-l px-3 py-1 disabled:opacity-50 disabled:cursor-not-allowed"
-			{disabled}
-		>
+		<Button type="submit" class="shrink-0 rounded-r-none bg-neutral-800 text-white" {disabled}>
 			Add{disabled ? 'ing...' : ''}
-		</button>
+		</Button>
 		<input
 			type="number"
-			class="w-24 border-x px-1 pr-2 text-right focus:outline-none disabled:bg-gray-200 disabled:cursor-not-allowed"
+			class="w-24 px-1 pr-2 text-right dark:bg-neutral-700 focus:outline-none disabled:bg-neutral-200 disabled:cursor-not-allowed"
 			bind:value={qty}
 			aria-label="quantity"
 			{disabled}
 		/>
 	</form>
-	<button class="bg-white shadow-lg rounded px-3 py-1" on:click={() => dispatch('clear')}>
+	<Button on:click={() => dispatch('clear')}>
 		Clear {Intl.NumberFormat().format(qtySaved)}
-	</button>
+	</Button>
 </div>

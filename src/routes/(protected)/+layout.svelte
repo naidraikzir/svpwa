@@ -1,9 +1,11 @@
 <script lang="ts">
+	import { Github } from 'lucide-svelte';
 	import { fade } from 'svelte/transition';
 	import { goto } from '$app/navigation';
-	import GithubMark from '$lib/components/GithubMark.svelte';
 	import Menu from '$lib/components/Menu.svelte';
 	import PageTitle from '$lib/components/PageTitle.svelte';
+	import Themer from '$lib/components/Themer.svelte';
+	import Button from '$lib/components/Button.svelte';
 
 	export let data;
 
@@ -15,19 +17,20 @@
 
 <Menu />
 
-<div class="min-h-screen bg-gray-100 pb-12">
-	<div class="flex items-center justify-between p-3">
+<div class="min-h-screen pb-12">
+	<div class="flex items-center justify-between p-3 gap-4">
 		<PageTitle />
 		<a
 			href={process.env.HOMEPAGE}
-			class="h-6 w-6 ml-auto mr-4 mt-0.5"
+			class="h-6 w-6 ml-auto"
 			target="_blank"
 			rel="noreferrer"
 			aria-label="Repository"
 		>
-			<GithubMark />
+			<Github />
 		</a>
-		<button class="bg-white shadow-lg px-3 py-1 rounded" on:click={logout}> Logout </button>
+		<Themer />
+		<Button on:click={logout}>Logout</Button>
 	</div>
 
 	{#key data.pathname}

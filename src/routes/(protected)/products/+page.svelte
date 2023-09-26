@@ -5,6 +5,7 @@
 	import { Circle, Line } from '$lib/components/Loader';
 	import VirtualScrollNavigation from '$lib/components/VirtualScrollNavigation.svelte';
 	import productsStore, { fetch, clear, isBusy } from '$lib/stores/products';
+	import Button from '$lib/components/Button.svelte';
 
 	let vs: SvelteComponent;
 
@@ -16,9 +17,9 @@
 <DocumentHead title="Products" description="List of Products" />
 
 <div class="flex justify-end gap-2">
-	<button class="bg-white shadow-lg rounded px-3 py-1" on:click={clear}>
+	<Button on:click={clear}>
 		Clear {Intl.NumberFormat().format($productsStore.length)}
-	</button>
+	</Button>
 </div>
 
 <VirtualScrollNavigation {vs} max={$productsStore.length} />
@@ -26,7 +27,7 @@
 <div class="mt-4">
 	{#if !$productsStore.length && !$isBusy}
 		<div class="flex items-center justify-center py-12">
-			<button class="bg-white shadow-lg rounded px-3 py-1" on:click={fetch}>Get Products</button>
+			<Button on:click={fetch}>Get Products</Button>
 		</div>
 	{:else}
 		<div class="text-xs">
@@ -51,7 +52,9 @@
 					<div class="ml-4">
 						<div class="text-lg font-semibold leading-tight mb-1">{data.title}</div>
 						<div class="mb-2">
-							<span class="bg-black text-white rounded shadow px-1 py-0.5">${data.price}</span>
+							<span class="bg-black dark:bg-neutral-700 text-white rounded shadow px-1 py-0.5"
+								>${data.price}</span
+							>
 						</div>
 						<div>{data.description}</div>
 					</div>
