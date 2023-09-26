@@ -2,8 +2,10 @@
 	import { createEventDispatcher } from 'svelte';
 	import { twMerge } from 'tailwind-merge';
 
+	let classNames = '';
+	export { classNames as class };
+
 	const dispatch = createEventDispatcher();
-	const { class: classNames, ...restProps } = $$restProps;
 </script>
 
 <button
@@ -12,7 +14,7 @@
 		classNames
 	)}
 	on:click={() => dispatch('click')}
-	{...restProps}
+	{...$$restProps}
 >
 	<slot />
 </button>
