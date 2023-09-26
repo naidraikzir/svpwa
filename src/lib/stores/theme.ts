@@ -7,7 +7,7 @@ const stored = browser
 	? localStorage.theme || (window.matchMedia('(prefers-color-scheme: dark)').matches && 'dark')
 	: undefined;
 
-export const theme = writable(<Theme>stored);
+export const theme = writable<Theme>(stored);
 
 theme.subscribe((value) => {
 	if (browser) {
