@@ -1,18 +1,18 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import menu from '$lib/menu';
-	import { Tally4 } from 'lucide-svelte';
+	import { GanttChart } from 'lucide-svelte';
 	import Button from './Button.svelte';
 </script>
 
 <div class="group/menu">
 	<Button
 		class="
-            fixed z-10 bottom-3 lg:bottom-4 right-3 lg:right-4 w-10 h-10 pb-0.5 text-4xl
+            fixed z-10 bottom-3 lg:bottom-4 right-3 lg:right-4 w-10 h-10 p-0 text-4xl
             flex items-center justify-center
         "
 	>
-		<Tally4 />
+		<GanttChart />
 	</Button>
 
 	<div
