@@ -1,8 +1,7 @@
-import { persist, createIndexedDBStorage } from '@macfja/svelte-persistent-store';
-import { randFullName, randEmail, randBetweenDate } from '@ngneat/falso';
-import * as Comlink from 'comlink';
-import { writable } from 'svelte/store';
-import { createWorker } from '$lib/utils';
+import { db } from '$lib/db';
+import { randBetweenDate, randEmail, randFullName } from '@ngneat/falso';
+import Dexie, { liveQuery } from 'dexie';
+import { writable, get } from 'svelte/store';
 
 export type ListItem = {
 	name: string;
@@ -10,31 +9,44 @@ export type ListItem = {
 	birthdate: Date;
 };
 
-const store = persist(writable<ListItem[]>([]), createIndexedDBStorage(), 'list');
+export const store = writable<ListItem[]>([]);
+export const count = liveQuery(() => db.list.count());
 export const isBusy = writable(false);
+export const isClearing = writable(false);
+
+export async function list() {
+	const items = await db.list.reverse().offset(get(store).length).limit(100).toArray();
+	store.update((store: ListItem[]) => [...store, ...items]);
+}
 
 export async function add(qty: number) {
 	isBusy.set(true);
-	const worker = await createWorker();
-	const results = await worker.create(
-		qty,
-		Comlink.proxy(() => ({
-			name: randFullName(),
-			email: randEmail(),
-			birthdate: randBetweenDate({
-				from: new Date('01/01/1970'),
-				to: new Date('12/31/2000')
-			})
-		}))
-	);
-	const decoder = new TextDecoder();
-	const str = decoder.decode(results);
-	store.update((value) => [...value, ...JSON.parse(str)]);
-	isBusy.set(false);
+	try {
+		const items = [];
+		for (let i = 0; i < qty; i++) {
+			items.push({
+				name: randFullName(),
+				email: randEmail(),
+				birthdate: randBetweenDate({
+					from: new Date('01/01/1970'),
+					to: new Date('12/31/2000')
+				})
+			});
+		}
+		await db.list.bulkAdd(items);
+		store.set([]);
+		list();
+	} catch (error) {
+		const err = new Dexie.BulkError(error as string);
+		console.error(err);
+	} finally {
+		isBusy.set(false);
+	}
 }
 
 export async function clear() {
-	store.update(() => []);
+	isClearing.set(true);
+	await db.list.clear();
+	store.set([]);
+	isClearing.set(false);
 }
-
-export default store;

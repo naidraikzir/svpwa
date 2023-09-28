@@ -7,9 +7,10 @@
 	export let qty = 1;
 	export let qtySaved = 0;
 	export let disabled = false;
+	export let clearDisabled = false;
 </script>
 
-<div class="flex justify-between gap-2">
+<div class="flex flex-wrap justify-between gap-2">
 	<form
 		on:submit|preventDefault={() => !disabled && dispatch('add')}
 		class="flex shadow-lg rounded overflow-hidden"
@@ -19,13 +20,18 @@
 		</Button>
 		<input
 			type="number"
-			class="w-24 px-1 pr-2 text-right dark:bg-neutral-700 focus:outline-none disabled:bg-neutral-200 disabled:cursor-not-allowed"
+			class="
+				w-20 px-1 pr-2 text-right dark:bg-neutral-700 focus:outline-none
+				disabled:bg-neutral-200 disabled:cursor-not-allowed
+				[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none
+				[&::-webkit-inner-spin-button]:appearance-none
+			"
 			bind:value={qty}
 			aria-label="quantity"
 			{disabled}
 		/>
 	</form>
-	<Button on:click={() => dispatch('clear')}>
+	<Button on:click={() => dispatch('clear')} disabled={clearDisabled}>
 		Clear {Intl.NumberFormat().format(qtySaved)}
 	</Button>
 </div>

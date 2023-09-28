@@ -40,7 +40,12 @@
 				let:data
 				on:bottom={fetch}
 			>
-				<div class="flex py-3">
+				<div class="relative flex py-3">
+					<div
+						class="absolute right-0 top-1/2 -translate-y-1/2 opacity-10 text-5xl font-bold font-mono dark:text-white"
+					>
+						{data.id}
+					</div>
 					<div class="w-16 h-16 shrink-0 pt-1">
 						<img
 							src={data.thumbnail}
@@ -52,9 +57,9 @@
 					<div class="ml-4">
 						<div class="text-lg font-semibold leading-tight mb-1">{data.title}</div>
 						<div class="mb-2">
-							<span class="bg-black dark:bg-neutral-700 text-white rounded shadow px-1 py-0.5"
-								>${data.price}</span
-							>
+							<span class="bg-black dark:bg-neutral-700 text-white rounded shadow px-1 py-0.5">
+								${data.price}
+							</span>
 						</div>
 						<div>{data.description}</div>
 					</div>
