@@ -4,7 +4,7 @@
 	import Adder from '$lib/components/Adder.svelte';
 	import DocumentHead from '$lib/components/DocumentHead.svelte';
 	import VirtualScrollNavigation from '$lib/components/VirtualScrollNavigation.svelte';
-	import { store, isBusy, isClearing, count, list, add, clear } from '$lib/stores/list';
+	import { store, isBusy, count, list, add, clear } from '$lib/stores/list';
 
 	const dateFormatter = Intl.DateTimeFormat(undefined, { dateStyle: 'long' });
 	let vs: SvelteComponent;
@@ -15,14 +15,7 @@
 
 <DocumentHead title="List" description="List Example" />
 
-<Adder
-	on:add={() => add(qty)}
-	on:clear={clear}
-	bind:qty
-	qtySaved={$count}
-	disabled={$isBusy}
-	clearDisabled={$isClearing}
-/>
+<Adder on:add={() => add(qty)} on:clear={clear} bind:qty qtySaved={$count} disabled={$isBusy} />
 
 <VirtualScrollNavigation {vs} max={$store.length} />
 

@@ -29,6 +29,5 @@
 
 	html {
 		@apply font-sans;
-		@apply selection:bg-black selection:text-white;
 	}
 }

@@ -19,8 +19,14 @@
 	</script>
 </svelte:head>
 
-<NetworkStatus on:shown={(e) => (status = e.detail)} />
-
-<div class="bg-neutral-100 dark:bg-black dark:text-white transition-all" class:pt-5={status}>
+<div
+	class="
+		bg-neutral-100 dark:bg-black dark:text-white
+		selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black
+		transition-all
+	"
+	class:pt-5={status}
+>
+	<NetworkStatus on:shown={(e) => (status = e.detail)} />
 	<slot />
 </div>

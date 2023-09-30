@@ -17,7 +17,7 @@
 
 <div
 	class="
-        fixed inset-x-0 top-0 text-sm text-center text-white overflow-hidden transition-all
+        fixed inset-x-0 top-0 text-sm text-center text-white overflow-hidden
         {shown ? 'max-h-6' : 'max-h-0'}
     "
 >

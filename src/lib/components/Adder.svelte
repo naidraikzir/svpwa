@@ -7,7 +7,6 @@
 	export let qty = 1;
 	export let qtySaved = 0;
 	export let disabled = false;
-	export let clearDisabled = false;
 </script>
 
 <div class="flex flex-wrap justify-between gap-2">
@@ -16,7 +15,7 @@
 		class="flex shadow-lg rounded overflow-hidden"
 	>
 		<Button type="submit" class="shrink-0 rounded-r-none bg-neutral-800 text-white" {disabled}>
-			Add{disabled ? 'ing...' : ''}
+			Add
 		</Button>
 		<input
 			type="number"
@@ -31,7 +30,7 @@
 			{disabled}
 		/>
 	</form>
-	<Button on:click={() => dispatch('clear')} disabled={clearDisabled}>
+	<Button on:click={() => dispatch('clear')} {disabled}>
 		Clear {Intl.NumberFormat().format(qtySaved)}
 	</Button>
 </div>
