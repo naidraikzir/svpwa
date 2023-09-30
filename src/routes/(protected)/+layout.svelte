@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Github } from 'lucide-svelte';
+	import Github from '~icons/lucide/github';
 	import { fade } from 'svelte/transition';
 	import { goto } from '$app/navigation';
 	import Menu from '$lib/components/Menu.svelte';
@@ -22,7 +22,7 @@
 		<PageTitle />
 		<a
 			href={process.env.HOMEPAGE}
-			class="h-6 w-6 ml-auto"
+			class="h-6 w-6 ml-auto text-xl"
 			target="_blank"
 			rel="noreferrer"
 			aria-label="Repository"
